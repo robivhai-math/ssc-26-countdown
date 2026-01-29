@@ -32,7 +32,7 @@
             max-width: 900px;
             width: 100%;
             background: var(--glass-bg);
-            padding: 30px;
+            padding: 20px;
             border-radius: 20px;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             backdrop-filter: blur(8px);
@@ -41,9 +41,47 @@
             text-align: center;
         }
 
-        /* হেডার ডিজাইন */
+        /* --- নতুন হেডার সেকশন (নাম, টাইটেল, ছবি) --- */
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 20px;
+            flex-wrap: wrap; /* মোবাইলের জন্য */
+        }
+
+        .user-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #a8ff78;
+            width: 25%;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .title-area {
+            width: 50%;
+            text-align: center;
+        }
+
+        .user-photo {
+            width: 25%;
+            text-align: right;
+        }
+
+        .user-photo img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #ffeb3b;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
         h1.main-title {
-            font-size: 4rem;
+            font-size: 3rem;
             margin: 0;
             background: linear-gradient(to right, #ffeb3b, #ff9800);
             -webkit-background-clip: text;
@@ -53,126 +91,87 @@
         }
 
         .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
             font-weight: 600;
         }
 
         .date-display {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            font-size: 1rem;
             background: rgba(0,0,0,0.2);
             display: inline-block;
-            padding: 8px 20px;
+            padding: 5px 15px;
             border-radius: 50px;
-            color: #a8ff78;
+            color: #e0e0e0;
+            margin-top: 5px;
         }
 
         /* কাউন্টডাউন ডিজাইন */
-        .countdown-container {
-            margin-bottom: 40px;
-        }
-        
-        .countdown {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
+        .countdown-container { margin-bottom: 40px; margin-top: 20px;}
+        .countdown { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
         .time-box {
             background: rgba(0, 0, 0, 0.4);
             padding: 15px 20px;
             border-radius: 12px;
-            min-width: 90px;
+            min-width: 80px;
             border: 1px solid rgba(255,255,255,0.2);
             transition: transform 0.3s;
         }
+        .time-box:hover { transform: translateY(-5px); background: rgba(0, 0, 0, 0.6); }
+        .number { font-size: 2.2rem; font-weight: bold; display: block; color: #fff; }
+        .label { font-size: 0.9rem; text-transform: uppercase; color: #ffd700; }
 
-        .time-box:hover {
-            transform: translateY(-5px);
-            background: rgba(0, 0, 0, 0.6);
-        }
-
-        .number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            display: block;
-            color: #fff;
-        }
-
-        .label {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            color: #ffd700;
-        }
-
-        /* রুটিন টেবিল ডিজাইন */
-        .routine-section {
-            margin-top: 30px;
-            text-align: left;
-        }
-
-        .routine-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #fff;
-            text-decoration: underline;
-            text-decoration-color: #ffeb3b;
-        }
-
-        .table-responsive {
-            overflow-x: auto;
-            border-radius: 10px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 1rem;
-        }
-
-        th {
-            background-color: var(--table-header);
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-size: 1.1rem;
-        }
-
-        td {
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
+        /* রুটিন টেবিল */
+        .routine-section { margin-top: 30px; text-align: left; }
+        .routine-title { text-align: center; font-size: 1.8rem; margin-bottom: 20px; color: #fff; text-decoration: underline; text-decoration-color: #ffeb3b; }
+        .table-responsive { overflow-x: auto; border-radius: 10px; }
+        table { width: 100%; border-collapse: collapse; font-size: 1rem; }
+        th { background-color: var(--table-header); color: white; padding: 12px; text-align: left; }
+        td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         tr:nth-child(even) { background-color: var(--table-row-even); }
         tr:nth-child(odd) { background-color: var(--table-row-odd); }
-
-        tr:hover {
-            background-color: rgba(255, 235, 59, 0.2);
-            cursor: pointer;
-        }
-
-        .date-col { font-weight: bold; color: #ffeb3b; min-width: 100px; }
+        .date-col { font-weight: bold; color: #ffeb3b; min-width: 90px; }
         .day-col { color: #a8ff78; }
-        .subject-col { color: #fff; }
 
+        /* মোবাইল রেসপন্সিভ ডিজাইন */
         @media (max-width: 600px) {
-            h1.main-title { font-size: 3rem; }
+            .header-section {
+                flex-direction: column-reverse; /* মোবাইলে ছবি উপরে, নাম নিচে */
+                text-align: center;
+                gap: 10px;
+            }
+            .user-name, .title-area, .user-photo {
+                width: 100%;
+                text-align: center;
+            }
+            .user-name { margin-top: 10px; font-size: 1.3rem; }
+            h1.main-title { font-size: 2.5rem; }
             .number { font-size: 1.8rem; }
             .time-box { min-width: 60px; padding: 10px; }
-            th, td { padding: 10px; font-size: 0.9rem; }
+            th, td { padding: 8px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1 class="main-title">SSC 26</h1>
-        <div class="subtitle">বোর্ড পরীক্ষার কাউন্টডাউন</div>
         
-        <div class="date-display" id="currentDate">লোড হচ্ছে...</div>
+        <div class="header-section">
+            <div class="user-name">
+                মোঃ রবিউল ইসলাম<br>
+                <span style="font-size: 0.9rem; font-weight: normal; color: #fff;">SSC পরীক্ষার্থী - ২০২৬</span>
+            </div>
+            
+            <div class="title-area">
+                <h1 class="main-title">SSC 26</h1>
+                <div class="subtitle">বোর্ড পরীক্ষার কাউন্টডাউন</div>
+                <div class="date-display" id="currentDate">লোড হচ্ছে...</div>
+            </div>
+
+            <div class="user-photo">
+                <img src="profile.jpg" alt="Rabiul Islam" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+            </div>
+        </div>
 
         <div class="countdown-container">
             <h3 style="margin-bottom: 15px;">পরীক্ষা শুরুর বাকি আর মাত্র:</h3>
@@ -211,115 +210,109 @@
                         <tr>
                             <td class="date-col">২১/০৪/২০২৬</td>
                             <td class="day-col">মঙ্গলবার</td>
-                            <td class="subject-col">বাংলা (আবশ্যিক)-১ম পত্র</td>
+                            <td>বাংলা (আবশ্যিক)-১ম পত্র</td>
                         </tr>
                         <tr>
                             <td class="date-col">২৩/০৪/২০২৬</td>
                             <td class="day-col">বৃহস্পতিবার</td>
-                            <td class="subject-col">বাংলা (আবশ্যিক)-২য় পত্র</td>
+                            <td>বাংলা (আবশ্যিক)-২য় পত্র</td>
                         </tr>
                         <tr>
                             <td class="date-col">২৬/০৪/২০২৬</td>
                             <td class="day-col">রবিবার</td>
-                            <td class="subject-col">ইংরেজি (আবশ্যিক)-১ম পত্র</td>
+                            <td>ইংরেজি (আবশ্যিক)-১ম পত্র</td>
                         </tr>
                         <tr>
                             <td class="date-col">২৮/০৪/২০২৬</td>
                             <td class="day-col">মঙ্গলবার</td>
-                            <td class="subject-col">ইংরেজি (আবশ্যিক)-২য় পত্র</td>
+                            <td>ইংরেজি (আবশ্যিক)-২য় পত্র</td>
                         </tr>
                         <tr>
                             <td class="date-col">৩০/০৪/২০২৬</td>
                             <td class="day-col">বৃহস্পতিবার</td>
-                            <td class="subject-col">তথ্য ও যোগাযোগ প্রযুক্তি</td>
+                            <td>তথ্য ও যোগাযোগ প্রযুক্তি</td>
                         </tr>
                         <tr>
                             <td class="date-col">০৩/০৫/২০২৬</td>
                             <td class="day-col">রবিবার</td>
-                            <td class="subject-col">গণিত (আবশ্যিক)</td>
+                            <td>গণিত (আবশ্যিক)</td>
                         </tr>
                         <tr>
                             <td class="date-col">০৫/০৫/২০২৬</td>
                             <td class="day-col">মঙ্গলবার</td>
-                            <td class="subject-col">বাংলাদেশ ও বিশ্ব পরিচয়</td>
+                            <td>বাংলাদেশ ও বিশ্ব পরিচয়</td>
                         </tr>
                         <tr>
                             <td class="date-col">০৭/০৫/২০২৬</td>
                             <td class="day-col">বৃহস্পতিবার</td>
-                            <td class="subject-col">ধর্ম ও নৈতিক শিক্ষা (সকল ধর্ম)</td>
+                            <td>ধর্ম ও নৈতিক শিক্ষা</td>
                         </tr>
                         <tr>
                             <td class="date-col">১০/০৫/২০২৬</td>
                             <td class="day-col">রবিবার</td>
-                            <td class="subject-col">পদার্থবিজ্ঞান / বাংলাদেশের ইতিহাস / ফিন্যান্স</td>
+                            <td>পদার্থবিজ্ঞান / ইতিহাস / ফিন্যান্স</td>
                         </tr>
                         <tr>
                             <td class="date-col">১১/০৫/২০২৬</td>
                             <td class="day-col">সোমবার</td>
-                            <td class="subject-col">ভূগোল ও পরিবেশ</td>
+                            <td>ভূগোল ও পরিবেশ</td>
                         </tr>
                         <tr>
                             <td class="date-col">১২/০৫/২০২৬</td>
                             <td class="day-col">মঙ্গলবার</td>
-                            <td class="subject-col">গার্হস্থ্য / কৃষি / সঙ্গীত / আরবি / সংস্কৃত / পালি / শারীরিক শিক্ষা</td>
+                            <td>গার্হস্থ্য / কৃষি / শারীরিক শিক্ষা</td>
                         </tr>
                         <tr>
                             <td class="date-col">১৩/০৫/২০২৬</td>
                             <td class="day-col">বুধবার</td>
-                            <td class="subject-col">হিসাব বিজ্ঞান</td>
+                            <td>হিসাব বিজ্ঞান</td>
                         </tr>
                         <tr>
                             <td class="date-col">১৪/০৫/২০২৬</td>
                             <td class="day-col">বৃহস্পতিবার</td>
-                            <td class="subject-col">রসায়ন / পৌরনীতি / ব্যবসায় উদ্যোগ</td>
+                            <td>রসায়ন / পৌরনীতি / ব্যবসায় উদ্যোগ</td>
                         </tr>
                         <tr>
                             <td class="date-col">১৭/০৫/২০২৬</td>
                             <td class="day-col">রবিবার</td>
-                            <td class="subject-col">উচ্চতর গণিত / বিজ্ঞান</td>
+                            <td>উচ্চতর গণিত / বিজ্ঞান</td>
                         </tr>
                         <tr>
                             <td class="date-col">২০/০৫/২০২৬</td>
                             <td class="day-col">বুধবার</td>
-                            <td class="subject-col">জীববিজ্ঞান / অর্থনীতি</td>
+                            <td>জীববিজ্ঞান / অর্থনীতি</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
     </div>
 
     <script>
-        // পরীক্ষার তারিখ: ২১ এপ্রিল ২০২৬, সকাল ১০টা
+        // ২১ এপ্রিল ২০২৬ সকাল ১০টা
         const examDate = new Date(2026, 3, 21, 10, 0, 0).getTime();
 
         function updateCountdown() {
             const now = new Date();
-
-            // বাংলা তারিখ ফরম্যাট
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById("currentDate").innerText = "আজ: " + now.toLocaleDateString('bn-BD', options);
+            document.getElementById("currentDate").innerText = now.toLocaleDateString('bn-BD', options);
 
             const distance = examDate - now.getTime();
 
             if (distance < 0) {
-                document.querySelector(".countdown").innerHTML = "<h1>পরীক্ষা শুরু হয়ে গেছে! শুভকামনা!</h1>";
+                document.querySelector(".countdown").innerHTML = "<h1>পরীক্ষা শুরু হয়ে গেছে!</h1>";
                 return;
             }
 
-            // সময়ের হিসাব
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // ইংরেজি সংখ্যাকে বাংলায় রূপান্তর করার ফাংশন
             function toBanglaNum(n) {
                 return n.toString().replace(/\d/g, d => "০১২৩৪৫৬৭৮৯"[d]);
             }
 
-            // HTML আপডেট (সংখ্যার আগে ০ যোগ করা হয়েছে যদি ১০ এর কম হয়)
             document.getElementById("days").innerText = toBanglaNum(days < 10 ? "0" + days : days);
             document.getElementById("hours").innerText = toBanglaNum(hours < 10 ? "0" + hours : hours);
             document.getElementById("minutes").innerText = toBanglaNum(minutes < 10 ? "0" + minutes : minutes);
