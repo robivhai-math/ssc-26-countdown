@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSC 26 রুটিন ও কাউন্টডাউন</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ffeb3b;
+            --text-color: #ffffff;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --table-header: #ff6b6b;
+            --table-row-odd: rgba(255, 255, 255, 0.1);
+            --table-row-even: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+        }
+
+        /* হেডার ডিজাইন */
+        h1.main-title {
+            font-size: 4rem;
+            margin: 0;
+            background: linear-gradient(to right, #ffeb3b, #ff9800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .date-display {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            background: rgba(0,0,0,0.2);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            color: #a8ff78;
+        }
+
+        /* কাউন্টডাউন ডিজাইন */
+        .countdown-container {
+            margin-bottom: 40px;
+        }
+        
+        .countdown {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px 20px;
+            border-radius: 12px;
+            min-width: 90px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s;
+        }
+
+        .time-box:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            color: #fff;
+        }
+
+        .label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: #ffd700;
+        }
+
+        /* রুটিন টেবিল ডিজাইন */
+        .routine-section {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .routine-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-decoration: underline;
+            text-decoration-color: #ffeb3b;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1rem;
+        }
+
+        th {
+            background-color: var(--table-header);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        tr:nth-child(even) { background-color: var(--table-row-even); }
+        tr:nth-child(odd) { background-color: var(--table-row-odd); }
+
+        tr:hover {
+            background-color: rgba(255, 235, 59, 0.2);
+            cursor: pointer;
+        }
+
+        .date-col { font-weight: bold; color: #ffeb3b; min-width: 100px; }
+        .day-col { color: #a8ff78; }
+        .subject-col { color: #fff; }
+
+        @media (max-width: 600px) {
+            h1.main-title { font-size: 3rem; }
+            .number { font-size: 1.8rem; }
+            .time-box { min-width: 60px; padding: 10px; }
+            th, td { padding: 10px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="main-title">SSC 26</h1>
+        <div class="subtitle">বোর্ড পরীক্ষার কাউন্টডাউন</div>
+        
+        <div class="date-display" id="currentDate">লোড হচ্ছে...</div>
+
+        <div class="countdown-container">
+            <h3 style="margin-bottom: 15px;">পরীক্ষা শুরুর বাকি আর মাত্র:</h3>
+            <div class="countdown">
+                <div class="time-box">
+                    <span class="number" id="days">00</span>
+                    <span class="label">দিন</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">ঘণ্টা</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">মিনিট</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="seconds">00</span>
+                    <span class="label">সেকেন্ড</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="routine-section">
+            <h2 class="routine-title">পরীক্ষার রুটিন</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>তারিখ</th>
+                            <th>বার</th>
+                            <th>বিষয় ও পত্র</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="date-col">২১/০৪/২০২৬</td>
+                            <td class="day-col">মঙ্গলবার</td>
+                            <td class="subject-col">বাংলা (আবশ্যিক)-১ম পত্র</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">২৩/০৪/২০২৬</td>
+                            <td class="day-col">বৃহস্পতিবার</td>
+                            <td class="subject-col">বাংলা (আবশ্যিক)-২য় পত্র</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">২৬/০৪/২০২৬</td>
+                            <td class="day-col">রবিবার</td>
+                            <td class="subject-col">ইংরেজি (আবশ্যিক)-১ম পত্র</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">২৮/০৪/২০২৬</td>
+                            <td class="day-col">মঙ্গলবার</td>
+                            <td class="subject-col">ইংরেজি (আবশ্যিক)-২য় পত্র</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">৩০/০৪/২০২৬</td>
+                            <td class="day-col">বৃহস্পতিবার</td>
+                            <td class="subject-col">তথ্য ও যোগাযোগ প্রযুক্তি</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">০৩/০৫/২০২৬</td>
+                            <td class="day-col">রবিবার</td>
+                            <td class="subject-col">গণিত (আবশ্যিক)</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">০৫/০৫/২০২৬</td>
+                            <td class="day-col">মঙ্গলবার</td>
+                            <td class="subject-col">বাংলাদেশ ও বিশ্ব পরিচয়</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">০৭/০৫/২০২৬</td>
+                            <td class="day-col">বৃহস্পতিবার</td>
+                            <td class="subject-col">ধর্ম ও নৈতিক শিক্ষা (সকল ধর্ম)</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">১০/০৫/২০২৬</td>
+                            <td class="day-col">রবিবার</td>
+                            <td class="subject-col">পদার্থবিজ্ঞান / বাংলাদেশের ইতিহাস / ফিন্যান্স</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">১১/০৫/২০২৬</td>
+                            <td class="day-col">সোমবার</td>
+                            <td class="subject-col">ভূগোল ও পরিবেশ</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">১২/০৫/২০২৬</td>
+                            <td class="day-col">মঙ্গলবার</td>
+                            <td class="subject-col">গার্হস্থ্য / কৃষি / সঙ্গীত / আরবি / সংস্কৃত / পালি / শারীরিক শিক্ষা</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">১৩/০৫/২০২৬</td>
+                            <td class="day-col">বুধবার</td>
+                            <td class="subject-col">হিসাব বিজ্ঞান</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">১৪/০৫/২০২৬</td>
+                            <td class="day-col">বৃহস্পতিবার</td>
+                            <td class="subject-col">রসায়ন / পৌরনীতি / ব্যবসায় উদ্যোগ</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">১৭/০৫/২০২৬</td>
+                            <td class="day-col">রবিবার</td>
+                            <td class="subject-col">উচ্চতর গণিত / বিজ্ঞান</td>
+                        </tr>
+                        <tr>
+                            <td class="date-col">২০/০৫/২০২৬</td>
+                            <td class="day-col">বুধবার</td>
+                            <td class="subject-col">জীববিজ্ঞান / অর্থনীতি</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // পরীক্ষার তারিখ: ২১ এপ্রিল ২০২৬, সকাল ১০টা
+        const examDate = new Date(2026, 3, 21, 10, 0, 0).getTime();
+
+        function updateCountdown() {
+            const now = new Date();
+
+            // বাংলা তারিখ ফরম্যাট
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById("currentDate").innerText = "আজ: " + now.toLocaleDateString('bn-BD', options);
+
+            const distance = examDate - now.getTime();
+
+            if (distance < 0) {
+                document.querySelector(".countdown").innerHTML = "<h1>পরীক্ষা শুরু হয়ে গেছে! শুভকামনা!</h1>";
+                return;
+            }
+
+            // সময়ের হিসাব
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // ইংরেজি সংখ্যাকে বাংলায় রূপান্তর করার ফাংশন
+            function toBanglaNum(n) {
+                return n.toString().replace(/\d/g, d => "০১২৩৪৫৬৭৮৯"[d]);
+            }
+
+            // HTML আপডেট (সংখ্যার আগে ০ যোগ করা হয়েছে যদি ১০ এর কম হয়)
+            document.getElementById("days").innerText = toBanglaNum(days < 10 ? "0" + days : days);
+            document.getElementById("hours").innerText = toBanglaNum(hours < 10 ? "0" + hours : hours);
+            document.getElementById("minutes").innerText = toBanglaNum(minutes < 10 ? "0" + minutes : minutes);
+            document.getElementById("seconds").innerText = toBanglaNum(seconds < 10 ? "0" + seconds : seconds);
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
