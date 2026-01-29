@@ -41,7 +41,7 @@
             text-align: center;
         }
 
-        /* --- নতুন হেডার সেকশন (নাম, টাইটেল, ছবি) --- */
+        /* --- হেডার সেকশন --- */
         .header-section {
             display: flex;
             justify-content: space-between;
@@ -49,7 +49,7 @@
             margin-bottom: 20px;
             border-bottom: 1px solid rgba(255,255,255,0.2);
             padding-bottom: 20px;
-            flex-wrap: wrap; /* মোবাইলের জন্য */
+            flex-wrap: wrap;
         }
 
         .user-name {
@@ -133,10 +133,10 @@
         .date-col { font-weight: bold; color: #ffeb3b; min-width: 90px; }
         .day-col { color: #a8ff78; }
 
-        /* মোবাইল রেসপন্সিভ ডিজাইন */
+        /* মোবাইল রেসপন্সিভ */
         @media (max-width: 600px) {
             .header-section {
-                flex-direction: column-reverse; /* মোবাইলে ছবি উপরে, নাম নিচে */
+                flex-direction: column-reverse;
                 text-align: center;
                 gap: 10px;
             }
@@ -144,7 +144,7 @@
                 width: 100%;
                 text-align: center;
             }
-            .user-name { margin-top: 10px; font-size: 1.3rem; }
+            .user-name { margin-top: 10px; font-size: 1.1rem; }
             h1.main-title { font-size: 2.5rem; }
             .number { font-size: 1.8rem; }
             .time-box { min-width: 60px; padding: 10px; }
@@ -159,7 +159,7 @@
         <div class="header-section">
             <div class="user-name">
                 মোঃ রবিউল ইসলাম<br>
-                <span style="font-size: 0.9rem; font-weight: normal; color: #fff;">SSC পরীক্ষার্থী - ২০২৬</span>
+                <span style="font-size: 0.9rem; font-weight: normal; color: #fff;">Mathematics, Dhaka Central University</span>
             </div>
             
             <div class="title-area">
